@@ -2,6 +2,8 @@ import chromadb
 from chromadb.config import Settings
 from openai import OpenAI
 
+from data_enrichment import get_fundamentals
+
 
 class FinancialSituationMemory:
     def __init__(self, name, config):
@@ -11,7 +13,10 @@ class FinancialSituationMemory:
             self.embedding = "text-embedding-3-small"
         self.client = OpenAI(base_url=config["backend_url"])
         self.chroma_client = chromadb.Client(Settings(allow_reset=True))
-        self.situation_collection = self.chroma_client.create_collection(name=name)
+        try:
+            self.situation_collection = self.chroma_client.get_collection(name=name)
+        except Exception:  # noqa: BLE001
+            self.situation_collection = self.chroma_client.create_collection(name=name)
 
     def get_embedding(self, text):
         """Get OpenAI embedding for a text"""
@@ -22,24 +27,38 @@ class FinancialSituationMemory:
         return response.data[0].embedding
 
     def add_situations(self, situations_and_advice):
-        """Add financial situations and their corresponding advice. Parameter is a list of tuples (situation, rec)"""
-
-        situations = []
-        advice = []
+        """Add financial situations and their corresponding advice."""
+        documents = []
+        metadatas = []
         ids = []
         embeddings = []
 
         offset = self.situation_collection.count()
 
         for i, (situation, recommendation) in enumerate(situations_and_advice):
-            situations.append(situation)
-            advice.append(recommendation)
-            ids.append(str(offset + i))
-            embeddings.append(self.get_embedding(situation))
+            embedding = self.get_embedding(situation)
+            doc_id = str(offset + i)
+            ticker = recommendation.get("ticker") if isinstance(recommendation, dict) else None
+            fundamentals = get_fundamentals(ticker) if ticker else {}
+
+            recommendation_text = (
+                recommendation.get("advice") if isinstance(recommendation, dict) else recommendation
+            )
+
+            metadata = {
+                "recommendation": recommendation_text,
+                "ticker": ticker,
+                **fundamentals,
+            }
+
+            documents.append(situation)
+            metadatas.append(metadata)
+            ids.append(doc_id)
+            embeddings.append(embedding)
 
         self.situation_collection.add(
-            documents=situations,
-            metadatas=[{"recommendation": rec} for rec in advice],
+            documents=documents,
+            metadatas=metadatas,
             embeddings=embeddings,
             ids=ids,
         )
