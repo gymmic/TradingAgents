@@ -1,3 +1,4 @@
+# DEPRECATED: This file is archived and not part of the active TraderBot runtime.
 import json
 import requests
 from bs4 import BeautifulSoup

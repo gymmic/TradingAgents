@@ -1,3 +1,4 @@
+# DEPRECATED: This file is archived and not part of the active TraderBot runtime.
 # TradingAgents/graph/conditional_logic.py
 
 from tradingagents.agents.utils.agent_states import AgentState

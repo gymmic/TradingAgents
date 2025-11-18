@@ -1,3 +1,4 @@
+# DEPRECATED: This file is archived and not part of the active TraderBot runtime.
 from .finnhub_utils import get_data_in_range
 from .googlenews_utils import getNewsData
 from .yfin_utils import YFinanceUtils

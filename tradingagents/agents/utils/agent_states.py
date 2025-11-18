@@ -1,3 +1,4 @@
+# DEPRECATED: This file is archived and not part of the active TraderBot runtime.
 from typing import Annotated, Sequence
 from datetime import date, timedelta, datetime
 from typing_extensions import TypedDict, Optional

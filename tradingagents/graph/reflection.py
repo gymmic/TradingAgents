@@ -1,3 +1,4 @@
+# DEPRECATED: This file is archived and not part of the active TraderBot runtime.
 # TradingAgents/graph/reflection.py
 
 from typing import Dict, Any

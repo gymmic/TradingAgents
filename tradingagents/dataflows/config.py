@@ -1,3 +1,4 @@
+# DEPRECATED: This file is archived and not part of the active TraderBot runtime.
 import tradingagents.default_config as default_config
 from typing import Dict, Optional
 

@@ -1,3 +1,4 @@
+# DEPRECATED: This file is archived and not part of the active TraderBot runtime.
 from typing import Annotated, Dict
 from .reddit_utils import fetch_top_from_category
 from .yfin_utils import *

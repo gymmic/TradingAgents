@@ -1,3 +1,4 @@
+# DEPRECATED: This file is archived and not part of the active TraderBot runtime.
 from langchain_core.messages import BaseMessage, HumanMessage, ToolMessage, AIMessage
 from typing import List
 from typing import Annotated

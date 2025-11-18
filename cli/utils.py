@@ -1,3 +1,4 @@
+# DEPRECATED: This file is archived and not part of the active TraderBot runtime.
 import questionary
 from typing import List, Optional, Tuple, Dict
 

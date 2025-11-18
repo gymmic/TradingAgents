@@ -1,3 +1,4 @@
+# DEPRECATED: This file is archived and not part of the active TraderBot runtime.
 import pandas as pd
 import yfinance as yf
 from stockstats import wrap

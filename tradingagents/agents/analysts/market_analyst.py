@@ -1,3 +1,4 @@
+# DEPRECATED: This file is archived and not part of the active TraderBot runtime.
 from langchain_core.prompts import ChatPromptTemplate, MessagesPlaceholder
 import time
 import json

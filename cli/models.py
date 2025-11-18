@@ -1,3 +1,4 @@
+# DEPRECATED: This file is archived and not part of the active TraderBot runtime.
 from enum import Enum
 from typing import List, Optional, Dict
 from pydantic import BaseModel

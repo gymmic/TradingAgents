@@ -1,3 +1,4 @@
+# DEPRECATED: This file is archived and not part of the active TraderBot runtime.
 # TradingAgents/graph/__init__.py
 
 from .trading_graph import TradingAgentsGraph
